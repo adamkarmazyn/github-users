@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Box } from '@material-ui/core';
+import { Button, Box, LinearProgress } from '@material-ui/core';
 import { Pagination, PaginationItem } from '@material-ui/lab';
 import { State } from '../redux/State';
 import { getAllUsersStart } from '../redux/actions/userActions';
 import { User } from '../models';
 import { DataTable } from './DataTable';
+import { Bar } from './Bar';
 
 const ROWS_PER_PAGE = 10;
 
@@ -14,7 +15,6 @@ export const List: React.FC = () => {
     return state.users.users;
   });
   const [lastUser = { id: 0 }] = [...users].reverse();
-  const isLoading = useSelector<State, boolean>((state) => state.users.isLoading);
   const error = useSelector<State, string | undefined>((state) => state.users.error);
   const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
@@ -29,8 +29,7 @@ export const List: React.FC = () => {
 
   return (
     <div>
-      <h2>List</h2>
-      <Button onClick={handleGetUserSince}>get more</Button>
+      <Bar isHome />
       {error && <div>{error}</div>}
       <DataTable
         data={users.slice((Number(pageNumber) - 1) * ROWS_PER_PAGE, (Number(pageNumber) - 1) * ROWS_PER_PAGE + ROWS_PER_PAGE)}
