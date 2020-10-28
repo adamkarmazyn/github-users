@@ -1,23 +1,25 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { PageNotFound } from './components';
+import { configureStore } from './redux/store';
 
+import { PageNotFound, List } from './components';
 import './App.css';
-import Home from './Home';
+import { UserDetails } from './components/UserDetails/UserDetails';
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/te">
-            <div>test</div>
-          </Route>
-          <Route component={PageNotFound} />
-        </Switch>
-      </div>
-    </Router>
+    <Provider store={configureStore()}>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route exact path="/" component={List} />
+            <Route path="/:login" exact component={UserDetails} />
+            <Route component={PageNotFound} />
+          </Switch>
+        </div>
+      </Router>
+    </Provider>
   );
 };
 
