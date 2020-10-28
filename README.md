@@ -1,3 +1,8 @@
+React app that shows GitHub users. I used: react-router-dom, redux, redux-saga, material ui, react testing library, react hooks, octokit, typescript, prettier, eslint.
+
+yarn
+yarn start
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
