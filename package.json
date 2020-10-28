@@ -30,13 +30,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "yarn run lint:ts && yarn run lint:css",
+    "lint": "yarn run lint:ts",
     "lint:ts": "tsc && yarn lint:eslint",
-    "lint:eslint": "eslint 'src/**/*.{ts,tsx}'",
-    "format:ts": "prettier --write 'src/**/*.{ts,tsx}' && yarn lint:eslint --fix",
-    "lint:css": "stylelint --syntax scss \"src/**/*.scss\"",
-    "format:css": "stylelint --fix --syntax scss \"src/**/*.scss\"",
-    "format": "yarn run format:ts && yarn run format:css"
+    "lint:eslint": "eslint 'src/**/*.{ts,tsx}'"
   },
   "eslintConfig": {
     "extends": [
@@ -61,6 +57,7 @@
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.6",
     "@types/redux": "^3.6.0",
+    "@types/redux-saga": "^0.10.5",
     "eslint": "^7.12.1",
     "node-sass": "^4.14.1",
     "prettier": "^2.1.2"

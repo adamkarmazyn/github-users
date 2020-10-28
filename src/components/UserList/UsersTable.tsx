@@ -1,9 +1,9 @@
 import React from 'react';
 import { Table, TableContainer, TableHead, TableRow, TableCell, Typography, TableBody } from '@material-ui/core';
-import { User } from '../models';
+import { User } from '../../models';
 import { Row } from './Row';
 
-const columns = [
+export const columns = [
   {
     label: 'Avatar',
     selector: 'avatar_url',
@@ -15,12 +15,13 @@ const columns = [
 ];
 
 interface DataTableProps {
-  data: User[];
+  users: User[];
   lastItemId: number;
   handleLastRendered: () => void;
+  handleRowClicked: (login: string) => void;
 }
 
-export const DataTable: React.FC<DataTableProps> = ({ data, lastItemId, handleLastRendered }) => {
+export const UsersTable: React.FC<DataTableProps> = ({ users, lastItemId, handleLastRendered, handleRowClicked }) => {
   return (
     <TableContainer>
       <Table stickyHeader size="small">
@@ -34,8 +35,14 @@ export const DataTable: React.FC<DataTableProps> = ({ data, lastItemId, handleLa
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((user) => (
-            <Row key={user.id} user={user} lastItemId={lastItemId} handleLastRendered={handleLastRendered} />
+          {users.map((user) => (
+            <Row
+              key={user.id}
+              user={user}
+              lastItemId={lastItemId}
+              handleLastRendered={handleLastRendered}
+              handleRowClicked={handleRowClicked}
+            />
           ))}
         </TableBody>
       </Table>

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Grid, Typography, makeStyles } from '@material-ui/core';
 import { State } from '../../redux/State';
 import { User } from '../../models';
-import { getUserByLoginStart } from '../../redux/actions/userActions';
-import { Bar } from '../Bar';
+import { getUserByLoginStart, getUserByLoginSuccess } from '../../redux/actions/userActions';
+import { Bar } from '../common/Bar';
 
 const useStyles = makeStyles({
   root: {
@@ -21,13 +21,16 @@ const useStyles = makeStyles({
 export const UserDetails: React.FC = () => {
   const { login } = useParams<{ login: string }>();
   const user = useSelector<State, User | null>((state) => state.users.user);
-  const error = useSelector<State, string | undefined>((state) => state.users.error);
   const dispatch = useDispatch();
   const classes = useStyles();
 
   useEffect(() => {
     if (!user) dispatch(getUserByLoginStart(login));
-  }, [user]);
+
+    return () => {
+      dispatch(getUserByLoginSuccess(null));
+    };
+  }, []);
 
   return (
     <>

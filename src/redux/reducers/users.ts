@@ -16,7 +16,7 @@ export const usersInitialState: UserState = {
   error: undefined,
 };
 
-export const users = (state: UserState = usersInitialState, action: UserActions) => {
+export const users = (state: UserState = usersInitialState, action: UserActions): UserState => {
   switch (action.type) {
     case UserConstants.USER_GET_ALL_START:
     case UserConstants.USER_GET_BY_LOGIN_START:

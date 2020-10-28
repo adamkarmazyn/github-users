@@ -7,23 +7,22 @@ const getAllUsers = (params?: Params) => {
   return octokit.users
     .list(params)
     .then((response) => {
-      console.warn(response);
       return response.data;
     })
     .catch((err) => {
-      console.warn(err);
+      // eslint-disable-next-line no-console
+      console.error(err);
       return { error: "Can't get all users" };
     });
 };
 
 function* prepareSaga(actions: GetAllUsersStart) {
   const result = yield call(getAllUsers, actions.payload);
-  console.warn(result);
   const { error } = result;
   if (error) yield put(getAllUsersFail(error));
   else yield put(getAllUsersSuccess(result));
 }
 
-export function* watchGetAllUsers() {
+export function* watchGetAllUsers(): Generator {
   yield takeLatest(UserConstants.USER_GET_ALL_START, prepareSaga);
 }

@@ -7,23 +7,22 @@ const getUserByUsername = (username: string) => {
   return octokit.users
     .getByUsername({ username })
     .then((response) => {
-      console.warn(response);
       return response.data;
     })
     .catch((err) => {
-      console.warn(err);
-      return { error: "Can't get all users" };
+      // eslint-disable-next-line no-console
+      console.error(err);
+      return { error: "Can't get a user" };
     });
 };
 
 function* prepareSaga(actions: GetUserByLoginStart) {
   const result = yield call(getUserByUsername, actions.payload);
-  console.warn(result);
   const { error } = result;
   if (error) yield put(getUserByLoginFail(error));
   else yield put(getUserByLoginSuccess(result));
 }
 
-export function* watchGetUserByLogin() {
+export function* watchGetUserByLogin(): Generator {
   yield takeLatest(UserConstants.USER_GET_BY_LOGIN_START, prepareSaga);
 }

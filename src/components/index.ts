@@ -1,2 +1,3 @@
 export { PageNotFound } from './PageNotFound';
-export { List } from './List';
+export { UserDetails } from './UserDetails';
+export { UserListPage } from './UserList';
