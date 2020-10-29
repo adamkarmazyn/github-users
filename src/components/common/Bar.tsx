@@ -31,7 +31,7 @@ export const Bar: React.FC<BarProps> = ({ isHome = false }) => {
         <Toolbar>
           {!isHome && (
             <IconButton color="inherit" className={classes.menuButton} aria-label="Back" onClick={() => history.push('/')}>
-              <ArrowBack />
+              <ArrowBack data-testid="back" />
             </IconButton>
           )}
           <Typography>Github Users</Typography>

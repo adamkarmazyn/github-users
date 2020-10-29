@@ -16,6 +16,14 @@ const useStyles = makeStyles({
     width: 96,
     height: 96,
   },
+  name: {
+    marginTop: 18,
+    marginLeft: 16,
+  },
+  login: {
+    marginTop: 4,
+    marginLeft: 16,
+  },
 });
 
 export const UserDetails: React.FC = () => {
@@ -43,10 +51,10 @@ export const UserDetails: React.FC = () => {
                 <Avatar alt={`${user.login} profile pic`} className={classes.avatar} src={user.avatar_url} />
               </Grid>
               <Grid item>
-                <Typography variant="h5" style={{ marginTop: 18, marginLeft: 16 }}>
+                <Typography variant="h5" className={classes.name}>
                   {user.name}
                 </Typography>
-                <Typography variant="h6" style={{ marginTop: 4, marginLeft: 16 }}>
+                <Typography variant="h6" className={classes.login}>
                   {user.login}
                 </Typography>
               </Grid>
