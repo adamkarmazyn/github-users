@@ -8,7 +8,7 @@ import { Store } from 'redux';
 import { Bar } from './Bar';
 import { configureStore } from '../../redux/store';
 import { State } from '../../redux/State';
-import { getUserByLoginFail, UserActions } from "../../redux/actions/userActions";
+import { getUserByLoginFail, UserActions } from '../../redux/actions/userActions';
 
 interface ProvidersProps {
   path?: string;
@@ -67,6 +67,6 @@ test('should navigate to home when back button is clicked', () => {
 test('should render error', () => {
   const { getByText, componentStore } = customRender(<Bar />);
   const error = 'show this error';
-  componentStore.dispatch(getUserByLoginFail(error))
+  componentStore.dispatch(getUserByLoginFail(error));
   expect(getByText(error)).toBeInTheDocument();
 });
